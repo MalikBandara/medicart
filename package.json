@@ -1,10 +1,15 @@
 {
   "name": "medicart",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Medicart medical center management workspace",
+  "main": "server/index.cjs",
   "scripts": {
-    "build": "node scripts/build.cjs"
+    "dev": "concurrently -k -n api,web \"node --watch server/index.cjs\" \"vite --host 127.0.0.1\"",
+    "build": "tsc -b && vite build",
+    "start": "node server/index.cjs",
+    "seed": "node server/seed.cjs",
+    "test": "node --test server/tests/*.test.cjs app.test.js",
+    "lint": "eslint src server"
   },
   "repository": {
     "type": "git",
@@ -16,5 +21,43 @@
   "bugs": {
     "url": "https://github.com/MalikBandara/medicart/issues"
   },
-  "homepage": "https://github.com/MalikBandara/medicart#readme"
+  "homepage": "https://github.com/MalikBandara/medicart#readme",
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.2",
+    "helmet": "^8.3.0",
+    "lucide-react": "^1.66.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/supertest": "^7.2.1",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "eslint": "^10.14.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "supertest": "^7.3.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.5"
+  },
+  "overrides": {
+    "minimatch": "^11.0.1"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  }
 }
